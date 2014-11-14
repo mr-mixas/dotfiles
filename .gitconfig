@@ -1,7 +1,10 @@
 [user]
 	name = mr-mixas
 	email = mixas.sr@gmail.com
+[core]
+	pager =
 [alias]
 	co = checkout
 	st = status
 	ci = commit
+	br = branch

@@ -76,7 +76,7 @@ fi
 
 ######## additional exports #########
 export EDITOR='vim'
-export LANG=C
+export LANGUAGE=C # disable gettext's translations to curtrent LANG or LC_ALL
 
 ######## general purposes functions #########
 date_r() {

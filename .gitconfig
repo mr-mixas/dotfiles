@@ -1,10 +1,31 @@
 [user]
-	name = mr-mixas
-	email = mixas.sr@gmail.com
+    name = mr-mixas
+    email = mixas.sr@gmail.com
+
 [core]
-	pager =
+    pager =
+
 [alias]
-	co = checkout
-	st = status
-	ci = commit
-	br = branch
+    co = checkout
+    st = status
+    ci = commit
+    br = branch
+
+[color]
+    ui = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow
+    frag = magenta
+    old = red
+    new = green
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan

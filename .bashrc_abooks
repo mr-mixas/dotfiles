@@ -1,0 +1,31 @@
+# Collection of tools for MP3 audiobooks
+
+### aliases ###
+
+alias ab_rm_tags='eyeD3 --remove-all'
+alias ab_volnorm='mp3gain -c -r'
+
+### functions ###
+
+ab_clean() {
+    local _dir
+    _dir="${1}"; shift
+    [ -n "${_dir}" ] || _dir=.
+
+    find "${_dir}" -not -name \*.mp3 -and -not -type d -delete
+    find "${_dir}" -type d -empty -delete
+}
+
+ab_rename() {
+    local _dir _dirname _filename _name
+    _dir="${1}"; shift
+    [ -n "${_dir}" ] || _dir=.
+
+    find "${_dir}" -depth -type d -or \( -type f -and -name \*.mp3 \) | \
+    while read _name; do
+        _dirname=`dirname "${_name}"`
+        _filename=`basename "${_name}" | sed "s/ \- /\-/g; s/ /_/g"`
+        [ -n "${_dirname}" ] && _filename="${_dirname}/${_filename}"
+        mv -f "${_name}" "${_filename}"
+    done
+}

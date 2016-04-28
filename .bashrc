@@ -89,3 +89,12 @@ date_r() {
         date -r ${1}
     fi
 }
+
+# perform "git pull" for all subdirs
+pullall() {
+    for d in *; do
+        [ -d $d ] || continue
+        echo -ne "$d/\n\t"
+        git -C $d/ pull
+    done
+}

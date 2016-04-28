@@ -80,10 +80,12 @@ export LANGUAGE=C.UTF-8 # disable gettext's translations to curtrent LANG or LC_
 export LC_ALL=C.UTF-8
 
 ######## general purposes functions #########
+
+# convert unixtime to human readable form
 date_r() {
-	if [ `uname` = Linux ]; then
-		date -d @${1}
-	else # FreeBSD
-		date -r ${1}
-	fi
+    if [ `uname` = Linux ]; then
+        date -d @${1}
+    else # FreeBSD
+        date -r ${1}
+    fi
 }

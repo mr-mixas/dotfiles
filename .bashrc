@@ -90,11 +90,14 @@ date_r() {
     fi
 }
 
-# perform "git pull" for all subdirs
-pullall() {
+# git batch for all subdirs
+gitb() {
     for d in *; do
-        [ -d $d ] || continue
-        echo -ne "$d/\n\t"
-        git -C $d/ pull
+        [ -d ${d} ] || continue
+        echo "./${d}"
+        git -C ${d}/ $@
     done
 }
+
+alias pullall='gitb pull'
+alias statall='gitb status --short'

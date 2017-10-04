@@ -10,6 +10,8 @@
     st = status --short --branch
     ci = commit
     br = branch
+    lf = log --follow
+    lo = log --follow --oneline
 
 [push]
     default = simple

@@ -9,8 +9,8 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=5000
-HISTFILESIZE=5000
+HISTSIZE=15000
+HISTFILESIZE=15000
 HISTTIMEFORMAT='[%F_%T]  '
 
 # check the window size after each command and, if necessary,
@@ -70,6 +70,10 @@ fi
 export EDITOR='vim'
 export LANGUAGE=C.UTF-8 # disable gettext's translations to curtrent LANG or LC_ALL
 export LC_ALL=C.UTF-8
+
+######## perl related ########
+[ -s ~/perl5/perlbrew/etc/bashrc ] && \
+    source ~/perl5/perlbrew/etc/bashrc
 
 ######## general purposes functions #########
 

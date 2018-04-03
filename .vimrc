@@ -4,6 +4,7 @@ set backspace=indent,eol,start      " Allow backspace in I mode
 
 if has("syntax")
     syntax on
+    colorscheme peachpuff
     set hlsearch
 endif
 

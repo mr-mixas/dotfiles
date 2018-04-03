@@ -12,6 +12,7 @@
     br = branch
     lf = log --follow
     lo = log --follow --oneline
+    nddiff = difftool --no-prompt --tool nddiff
 
 [push]
     default = simple
@@ -34,3 +35,6 @@
     added = yellow
     changed = green
     untracked = cyan
+
+[difftool "nddiff"]
+    cmd = nddiff $LOCAL $REMOTE

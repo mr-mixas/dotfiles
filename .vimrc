@@ -29,3 +29,11 @@ set expandtab
 " Display extra whitespace
 set list!
 set list listchars=tab:>-,trail:-
+
+" Highlight lines lengths
+set colorcolumn=80,120
+highlight ColorColumn ctermbg=0
+
+" Tabs in v mode idents code
+vmap <tab> >gv
+vmap <s-tab> <gv

@@ -37,3 +37,9 @@ highlight ColorColumn ctermbg=0
 " Tabs in v mode idents code
 vmap <tab> >gv
 vmap <s-tab> <gv
+
+function! TrimTrailingSpaces()
+    %s/\s\+$//e
+endfunction
+
+nnoremap <F2> :call TrimTrailingSpaces()<CR>

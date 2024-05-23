@@ -104,3 +104,35 @@ gitb() {
 
 alias pullall='gitb pull'
 alias statall='gitb status --short'
+
+# export env vars from gnome-keyring
+if [ "${SSH_AGENT_LAUNCHER}" = 'gnome-keyring' -a -x /usr/bin/secret-tool ]; then
+    # to set new auto-exported secret use
+    # `secret-tool store --label=<HUMAN_READABLE> set_env_mode shell set_env_name <VAR_NAME>`
+
+    cur_key=''
+    var_name=''
+    var_value=''
+
+    # attrs in stderr
+    found="$(/usr/bin/secret-tool search --all set_env_mode shell 2>&1)"
+
+    for tok in $(echo "${found}" | awk 'NF == 3 {print $1, $3}'); do
+        if [ -z "${cur_key}" ]; then
+            cur_key=$tok
+        else
+            if [ "${cur_key}" = 'attribute.set_env_name' ]; then
+                var_name=$tok
+            elif [ "${cur_key}" = 'secret' ]; then
+                var_value=$tok
+            fi
+            cur_key=''
+
+            if [ -n "${var_name}" -a -n "${var_value}" ]; then
+                export ${var_name}=${var_value}
+                var_name=''
+                var_value=''
+            fi
+        fi
+    done
+fi

@@ -27,8 +27,15 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;33m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -62,18 +69,18 @@ alias svn_kw='svn ps svn:keywords "Id HeadURL Header"'
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
+  fi
 fi
 
 ######## additional exports #########
 export EDITOR='vim'
 export LANGUAGE=C.UTF-8 # disable gettext's translations to curtrent LANG or LC_ALL
 export LC_ALL=C.UTF-8
-
-######## perl related ########
-[ -s ~/perl5/perlbrew/etc/bashrc ] && \
-    source ~/perl5/perlbrew/etc/bashrc
 
 ######## general purposes functions #########
 
